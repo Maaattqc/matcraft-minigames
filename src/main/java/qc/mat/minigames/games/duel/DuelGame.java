@@ -81,14 +81,13 @@ public class DuelGame extends Minigame {
 
 	@Override
 	protected void tickRunning() {
-		// Check for dead players
-		for (UUID uuid : new ArrayList<>(players)) {
-			ServerPlayer p = server.getPlayerList().getPlayer(uuid);
-			if (p == null) continue;
-			if (p.isDeadOrDying()) {
-				declareWinner(getOtherPlayer(uuid), uuid);
-				return;
-			}
+		// Death is handled via ALLOW_DEATH event in MatMinigames
+	}
+
+	public void onPlayerKilled(UUID loserId) {
+		UUID winnerId = getOtherPlayer(loserId);
+		if (winnerId != null) {
+			declareWinner(winnerId, loserId);
 		}
 	}
 
@@ -138,11 +137,6 @@ public class DuelGame extends Minigame {
 
 		String msg = msgs.duelWin.replace("%winner%", winnerName).replace("%loser%", loserName);
 		broadcastToAll(msg);
-
-		// Respawn dead player
-		if (loserPlayer != null && loserPlayer.isDeadOrDying()) {
-			loserPlayer.setHealth(loserPlayer.getMaxHealth());
-		}
 
 		end();
 	}

@@ -40,6 +40,10 @@ replay_*.log
 *.hprof
 *.jfr
 
+# secrets
+
+.env
+
 # claude
 
 .claude/
