@@ -187,4 +187,4 @@ cd matcraft-minigames
 
 ## Author / Auteur
 
-**Mathieu Fournier** — [@Maaattqc](https://github.com/Maaattqc)
+**Mathieu Fournier** · mathieufournierqc@outlook.com — [@Maaattqc](https://github.com/Maaattqc)
